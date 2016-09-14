@@ -67,6 +67,7 @@ define([
      * @param {Object|ArrayBuffer|Uint8Array} [options.gltf] The object for the glTF JSON or an arraybuffer of Binary glTF defined by the CESIUM_binary_glTF extension.
      * @param {String} [options.basePath=''] The base path that paths in the glTF JSON are relative to.
      * @param {Boolean} [options.dynamic] Collection is set to stream instance data every frame.
+     * @param {ShadowMode} [options.shadows] Determines what ShadowMode setting will be used for the model.
      * @param {Boolean} [options.show=true] Determines if the collection will be shown.
      * @param {Boolean} [options.allowPicking=false] When <code>true</code>, each glTF mesh and primitive is pickable with {@link Scene#pick}.
      * @param {Boolean} [options.asynchronous=true] Determines if model WebGL resource creation will be spread out over several frames or block until completion once all glTF files are loaded.
@@ -131,6 +132,7 @@ define([
         this._gltf = options.gltf;
         this._basePath = options.basePath;
         this._asynchronous = options.asynchronous;
+        this._shadows = options.shadows;
 
         this.debugShowBoundingVolume = defaultValue(options.debugShowBoundingVolume, false);
         this._debugShowBoundingVolume = false;
@@ -494,6 +496,7 @@ define([
             cacheKey : undefined,
             asynchronous : collection._asynchronous,
             allowPicking : collection._allowPicking,
+            shadows: collection._shadows,
             precreatedAttributes : undefined,
             vertexShaderLoaded : undefined,
             fragmentShaderLoaded : undefined,
